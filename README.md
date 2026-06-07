@@ -1,6 +1,6 @@
 ## Simulator and OU Motility Model
 
-The simulator generates two-dimensional cell trajectories from a polarity-driven Ornstein-Uhlenbeck (OU) motility model. Each cell has an unobserved polarity-like variable ($p(t)$) and an observed position-like variable ($x(t)$). In one spatial dimension,
+The simulator generates two-dimensional cell trajectories from a polarity-driven Ornstein-Uhlenbeck (OU) motility model. Each cell has an unobserved polarity-like variable $p(t)$ and an observed position-like variable $x(t)$. In one spatial dimension,
 
 ```math
 dp(t) = a p(t)\,dt + s_0\,dW_0(t)
@@ -17,7 +17,7 @@ where:
 * $s_0$ is the polarity diffusion scale,
 * $s_1$ is the positional diffusion scale.
 
-In two dimensions, the same dynamics are applied independently to the ($x$)- and ($y$)-axes.
+In two dimensions, the same dynamics are applied independently to the $x$- and $y$-axes.
 
 The onset/offset-style simulations use two regimes:
 
@@ -32,7 +32,7 @@ The same generative structure is used by both the analytical Kalman-filter/MCMC 
 
 ## Analytical Kalman Filter + MCMC Inference
 
-The analytical inference route uses the fact that the OU motility model is linear and Gaussian after exact discretisation. For a sampling interval (\Delta t), the continuous-time model has the discrete state-space form
+The analytical inference route uses the fact that the OU motility model is linear and Gaussian after exact discretisation. For a sampling interval $\Delta t$, the continuous-time model has the discrete state-space form
 
 ```math
 z_{k+1} = F_k z_k + \eta_k,
@@ -40,7 +40,7 @@ z_{k+1} = F_k z_k + \eta_k,
 \eta_k \sim \mathcal{N}(0, Q_k).
 ```
 
-Here (F_k) and (Q_k) are obtained analytically from the matrix exponential and integrated process-noise covariance.
+Here $F_k$ and $Q_k$ are obtained analytically from the matrix exponential and integrated process-noise covariance.
 
 For a two-dimensional trajectory, the latent state is
 
@@ -49,7 +49,7 @@ z_k =
 (p_{x,k}, p_{y,k}, x_k, y_k)^\top,
 ```
 
-where ((p_{x,k}, p_{y,k})) are latent polarity variables and ((x_k, y_k)) are observed cell positions. The observation model is
+where $(p_{x,k}, p_{y,k})$ are latent polarity variables and $(x_k, y_k)$ are observed cell positions. The observation model is
 
 ```math
 y_k = H z_k + \epsilon_k,
@@ -67,7 +67,7 @@ H =
 \end{pmatrix}.
 ```
 
-The pre/post transition is encoded by making the drift and coupling time-dependent. For trajectory (i), with onset frame (t_i^\ast), a sigmoid gate (s_{i,k}) interpolates between the pre-onset and post-onset regimes. The post-onset relaxation rate is inferred, while the pre-onset relaxation is parameterised as a fixed multiple of the post-onset rate. The coupling is similarly gated so that it is weak before onset and active after onset.
+The pre/post transition is encoded by making the drift and coupling time-dependent. For trajectory $i$, with onset frame $t_i^\ast$, a sigmoid gate $s_{i,k}$ interpolates between the pre-onset and post-onset regimes. The post-onset relaxation rate is inferred, while the pre-onset relaxation is parameterised as a fixed multiple of the post-onset rate. The coupling is similarly gated so that it is weak before onset and active after onset.
 
 For fixed kinetic parameters, the latent polarity paths do not need to be sampled. They are integrated out exactly with a Kalman filter, producing the marginal trajectory likelihood
 
@@ -112,7 +112,7 @@ For the onset model, the target parameter vector is
 \theta = (\gamma_0, \gamma_1, \log \sigma_r),
 ```
 
-with (\sigma_p) fixed in the current SBI posterior-output convention.
+with $\sigma_p$ fixed in the current SBI posterior-output convention.
 
 ---
 
@@ -157,7 +157,7 @@ The final output is a weighted posterior sample over
 (\gamma_0, \gamma_1, \log \sigma_r),
 ```
 
-saved alongside physical-scale samples such as ($\gamma_0$), ($\gamma_1$), ($\sigma_r$), and fixed ($\sigma_p$).
+saved alongside physical-scale samples such as $\gamma_0$, $\gamma_1$, $\sigma_r$, and fixed $\sigma_p$.
 
 ---
 
