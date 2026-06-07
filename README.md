@@ -1,3 +1,12 @@
+
+<p align="center">
+  <img width="480" height="270" src="assets/tracking.png">
+  <br>
+      Cell motility inference with Kalman filters and simulation based inference
+</p>
+
+
+
 ## Simulator and OU Motility Model
 
 The simulator generates two-dimensional cell trajectories from a polarity-driven Ornstein-Uhlenbeck (OU) motility model. Each cell has an unobserved polarity-like variable $p(t)$ and an observed position-like variable $x(t)$. In one spatial dimension,
