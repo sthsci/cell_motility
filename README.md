@@ -1,6 +1,6 @@
 ## Simulator and OU Motility Model
 
-The simulator generates two-dimensional cell trajectories from a polarity-driven Ornstein--Uhlenbeck (OU) motility model. Each cell has an unobserved polarity-like variable (p(t)) and an observed position-like variable (x(t)). In one spatial dimension,
+The simulator generates two-dimensional cell trajectories from a polarity-driven Ornstein-Uhlenbeck (OU) motility model. Each cell has an unobserved polarity-like variable ($p(t)$) and an observed position-like variable ($x(t)$). In one spatial dimension,
 
 ```math
 dp(t) = a p(t)\,dt + s_0\,dW_0(t)
@@ -12,12 +12,12 @@ dx(t) = b p(t)\,dt + s_1\,dW_1(t)
 
 where:
 
-* (a < 0) controls polarity relaxation,
-* (b) controls how strongly polarity drives displacement,
-* (s_0) is the polarity diffusion scale,
-* (s_1) is the positional diffusion scale.
+* $a < 0$ controls polarity relaxation,
+* $b$ controls how strongly polarity drives displacement,
+* $s_0$ is the polarity diffusion scale,
+* $s_1$ is the positional diffusion scale.
 
-In two dimensions, the same dynamics are applied independently to the (x)- and (y)-axes.
+In two dimensions, the same dynamics are applied independently to the ($x$)- and ($y$)-axes.
 
 The onset/offset-style simulations use two regimes:
 
@@ -126,7 +126,7 @@ The model is trained so that embeddings capture parameter-relevant variation in 
 * parameter prediction,
 * onset-aware structure in the learned representation.
 
-The learned embedding is then used as the summary statistic for ABC, and as the context representation for MDN posterior inference.
+The learned embedding is then used as the summary statistic for approximate bayesian computation (ABC), and as the context representation for Gaussian mixture density network (MDN) posterior inference.
 
 ---
 
@@ -142,7 +142,7 @@ For observed tracks:
 4. embed the simulated trajectories with the same encoder;
 5. compare simulated and observed summaries.
 
-The sampler uses ABC-SMC rather than simple rejection ABC. A pilot stage sets an initial distance threshold. Successive populations then:
+The sampler uses ABC with sequential Monte Carlo (SMC) rather than simple rejection ABC. A pilot stage sets an initial distance threshold. Successive populations then:
 
 * perturb previously accepted particles,
 * resimulate trajectories,
@@ -157,7 +157,7 @@ The final output is a weighted posterior sample over
 (\gamma_0, \gamma_1, \log \sigma_r),
 ```
 
-saved alongside physical-scale samples such as (\gamma_0), (\gamma_1), (\sigma_r), and fixed (\sigma_p).
+saved alongside physical-scale samples such as ($\gamma_0$), ($\gamma_1$), ($\sigma_r$), and fixed ($\sigma_p$).
 
 ---
 
