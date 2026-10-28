@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cell-motility-inference"
+version = "0.1.0"
+description = "Synthetic validation of target-associated killer-cell motility inference"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24,<3", "scipy>=1.10", "pandas>=2",
+  "numba>=0.59", "torch>=2.1", "matplotlib>=3.7", "arviz>=0.17",
+]
+
+[project.optional-dependencies]
+notebooks = ["jupyterlab>=4", "nbformat>=5", "nbclient>=0.9", "ipykernel>=6"]
+test = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["motility_inference*", "mantishrimp*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+

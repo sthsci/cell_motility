@@ -5,6 +5,61 @@
       Cell motility inference with Kalman filters and simulation based inference
 </p>
 
+## Synthetic killer–target inference framework
+
+The expanded study is now written as a [Nature Communications-style manuscript](manuscript/nature_communications/main.pdf), with [Supplementary Information](manuscript/nature_communications_supplement/main.pdf), 13 refined figures and source data. See the [manuscript guide](manuscript/README.md) for the added simulations, interpretation and reproduction commands.
+
+The new `motility_inference` package tests whether target-associated changes in
+active movement amplitude, directional persistence and short-timescale jitter
+can be recovered from synthetic tracks. It includes an accelerated ABM,
+hierarchical Bayesian state-space inference, neural simulation-based inference,
+rejection ABC, and independent validation against the supplied MantiShrimp ABM.
+**All included results are synthetic.**
+
+Start with the [results report](results/synthetic_v1/REPORT.md), the
+[model and implementation guide](research/INFERENCE_FRAMEWORK.md), or these
+executed notebooks:
+
+1. [Simulator and scientific question](notebooks/01_simulator_and_question.ipynb)
+2. [Hierarchical state-space inference](notebooks/02_hierarchical_state_space.ipynb)
+3. [Simulation-based inference](notebooks/03_simulation_based_inference.ipynb)
+4. [Validation and results](notebooks/04_validation_and_results.ipynb)
+
+Install in your preferred isolated environment:
+
+```bash
+python -m pip install -e '.[notebooks,test]'
+```
+
+Reproduce the full benchmark from the repository root:
+
+```bash
+python scripts/run_synthetic_benchmark.py --stage all
+python scripts/check_timestep.py
+python scripts/render_benchmark_report.py
+python scripts/execute_notebooks.py
+```
+
+Individual stages (`speed`, `bank`, `train`, `evaluate`, `state-space`,
+`reference`, `refine`, `ppc`) can be run separately. The `refine` stage extends
+only MCMC runs that failed the numerical quality gate, retaining their earlier
+diagnostics. Default benchmark output is `results/synthetic_v1/`.
+
+```bash
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q
+```
+
+The plugin-autoload setting avoids unrelated globally installed pytest plugins;
+the project requires no external pytest plugin. All notebooks use saved results
+when present and do not launch large training jobs by default.
+
+The supplied ABM now has optional `killer_delta_speed`, `killer_delta_tau` and
+`killer_delta_jitter` parameters in `MotilityConfig`. Zero defaults preserve its
+original dynamics. The faster reduced engine has explicit simplifications; its
+speedup is measured against the same reduced model's reference implementation,
+not presented as exact equivalence to the full ABM.
+
+The original OU/Kalman and trajectory-embedding workflows are documented below.
 
 
 ## Simulator and OU Motility Model
