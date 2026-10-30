@@ -1,0 +1,28 @@
+{
+  "kind": "paired_ssm",
+  "scenarios": {
+    "calibration": {
+      "start": 0,
+      "stop": 96,
+      "n": 96
+    },
+    "fixed_null": {
+      "start": 96,
+      "stop": 192,
+      "n": 96
+    },
+    "combined": {
+      "start": 192,
+      "stop": 288,
+      "n": 96
+    },
+    "varied_baseline_null": {
+      "start": 288,
+      "stop": 336,
+      "n": 48
+    }
+  },
+  "seconds": 0.9501287919993047,
+  "n": 336,
+  "independent_of_training": true
+}

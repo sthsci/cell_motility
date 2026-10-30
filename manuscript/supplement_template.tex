@@ -1,0 +1,167 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx,amsmath,amssymb}
+\usepackage[margin=23mm]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage[super,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\onehalfspacing
+\raggedright
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\begin{document}
+\title{Supplementary Information\\[6pt]\large Bayesian inference of target-associated migration changes in synthetic killer-cell trajectories}
+\author{}
+\date{}
+\maketitle
+\begin{center}Computational manuscript draft. All results are synthetic.\end{center}
+\tableofcontents
+\clearpage
+\section{Scope and reproducibility record}
+This supplement contains mathematical derivations, full numerical comparisons and diagnostic figures for a synthetic study of proximity-associated motility. It is intended to make the distinction between numerical correctness, parameter recovery, detection and mechanism attribution explicit. No experimental observations, biological replicates, clinical records or human-subject data were analyzed. ``Killer'' and ``target'' identify roles within the simulator; their geometry and parameter values are controlled benchmark choices.
+
+The initial results in \texttt{results/synthetic\_v1} are retained as an exploratory stage. The follow-up results in \texttt{results/manuscript\_v2} were generated from plans written before the additional computations, with separate seed ranges. Those plans followed inspection of the initial results and do not constitute a preregistration. The expanded calibration and decision ensembles were evaluated using frozen numerical thresholds. Neural networks were not selected using scientific test performance. First training seeds were designated primary, and all remaining seeds are reported as sensitivity analyses.
+
+A simulated movie is the independent unit for evaluation. Its 12 cells share geometry and generating global parameters; its successive frames have temporal dependence. Neither the number of frames nor the number of cells is used as the denominator of calibration or declaration rates. Several neural networks evaluate the same movies. Their outputs are reported separately rather than concatenated into a larger apparent sample.
+
+The supplied source snapshot includes parameter priors, observation settings, random-seed partitions, inference scripts, plotting scripts and manuscript templates. The expanded neural experiments generated 24,000 training movies and 4,048 evaluation movies, including 336 movies matched to the state-space study. Regenerating those matched movies for state-space fitting does not create 336 additional independent evaluation datasets. Source hashes permit the state-space and neural comparisons to be checked at the observed-position level.
+
+\section{Integrated Ornstein--Uhlenbeck transition}
+\subsection{Joint velocity and position innovations}
+For one spatial coordinate, hold $S$, $\tau$ and $J$ constant over interval $h$. With initial velocity $v_0$, the Ornstein--Uhlenbeck solution is
+\begin{equation}
+ v_h=e^{-h/\tau}v_0+\sqrt{2S^2/\tau}\int_0^h e^{-(h-s)/\tau}\,dW_v(s).
+\end{equation}
+Integrating velocity gives
+\begin{equation}
+ x_h-x_0=\tau(1-e^{-h/\tau})v_0+\sqrt{2S^2\tau}\int_0^h[1-e^{-(h-s)/\tau}]\,dW_v(s)+J\int_0^h dW_x(s).
+\end{equation}
+The same velocity-driving Brownian process appears in both equations. Its contributions are therefore correlated. Ito isometry yields the covariance entries in the main Methods:
+\begin{align}
+ Q_{vv}&=S^2(1-e^{-2h/\tau}),\\
+ Q_{vx}&=S^2\tau(1-e^{-h/\tau})^2,\\
+ Q_{xx}&=S^2\tau^2[2h/\tau-4(1-e^{-h/\tau})+(1-e^{-2h/\tau})]+J^2h.
+\end{align}
+Sampling the two innovations independently would discard $Q_{vx}$ and alter the relationship between displacement and subsequent velocity. The simulator instead samples their joint Gaussian distribution. The likelihood uses the same covariance identity, while independent unit tests compare it with matrix-exponential and covariance-integration calculations.
+
+This transition is exact only conditional on constant coefficients within the step. The simulator evaluates proximity at the beginning of each internal step. It therefore approximates a spatially varying diffusion by locally frozen coefficients. Increasing internal substeps can change the distribution of target exposure and mechanical forces even though no Euler error is present in a constant-coefficient Ornstein--Uhlenbeck transition. The timestep experiment evaluates that separate source of numerical approximation.
+
+\subsection{Stable evaluation at small intervals}
+Let $a=h/\tau$. The difference $1-e^{-a}$ is evaluated using \texttt{expm1} to reduce cancellation. The bracket in $Q_{xx}$ has leading term $2a^3/3$ and becomes poorly conditioned if computed by subtracting nearly equal terms at very small $a$. The implementation switches to a local series in that regime. The velocity variance is non-negative, and the conditional position-innovation variance used in the Cholesky factor is protected against tiny negative roundoff. These numerical safeguards do not modify the intended finite covariance formula. They were checked against independent reference calculations over representative parameter and interval ranges.
+
+\subsection{Locally stationary displacement statistics}
+When velocity is stationary with variance $S^2$ and coefficients are constant, the integrated active displacement has variance
+\begin{equation}
+ V_A(h)=2S^2\tau[h-\tau(1-e^{-h/\tau})].
+\end{equation}
+Brownian displacement adds $V_J(h)=J^2h$, and independent localization errors at the two endpoints add $V_E=2\sigma_{\rm obs}^2$. Thus, the per-axis displacement variance is $V_A+V_J+V_E$. Its short-interval expansion is
+\begin{equation}
+ V_A(h)=S^2h^2-\frac{S^2}{3\tau}h^3+\frac{S^2}{12\tau^2}h^4+O(h^5).
+\end{equation}
+For non-overlapping increments separated by $k\geq1$ recording intervals, the active covariance is
+\begin{equation}
+ C_A(k)=S^2\tau^2(1-e^{-h/\tau})^2e^{-(k-1)h/\tau}.
+\end{equation}
+Brownian position increments do not contribute to this covariance. Differenced localization errors contribute $-\sigma_{\rm obs}^2$ at lag one and zero at larger lags. These expressions show why short-lag variability, localization noise and temporal memory must be modeled together. They also show why a large displacement variance alone is insufficient to identify persistence.
+
+At $h=0.25$\,min, $\sigma_{\rm obs}=0.15\,\mu$m and zero cell offset, the far-field parameters $(3.2,1.6,0.7)$ give per-axis contributions of approximately 0.608, 0.1225 and 0.045\,$\mu$m$^2$ from active motion, jitter and localization, respectively. Under the strong combined contact response, the contributions are approximately 0.115, 0.607 and 0.045\,$\mu$m$^2$. The jitter fractions are therefore approximately 16\% and 79\%. Supplementary Fig.~S8 evaluates the same identities across recording intervals. This calculation is a local, stationary illustration. It does not assume that a cell crossing a distance gradient has already equilibrated to every instantaneous coefficient value.
+
+The translational diffusion coefficient in the convention $dx=\sqrt{2D}\,dW$ is $D=J^2/2$. A 2.23-fold increase in $J$ is therefore approximately a 4.95-fold increase in $D$. All manuscript effect ratios for jitter refer to $J$, not to $D$. Similarly, $S$ is a stationary per-coordinate velocity standard deviation rather than mean scalar speed.
+
+\section{Hierarchical likelihood and numerical posterior}
+\subsection{Observation conditioning}
+The Kalman filter marginalizes position and velocity for each cell and coordinate. Its initial true-position uncertainty is $\sigma_{\rm obs}^2$ after conditioning on the first recorded position under a flat initial-position prior. The initial velocity is zero-mean with local stationary variance. The likelihood sums innovation log densities after that first observation. Missing observations may be skipped, but their distance gates require interpolation in the current implementation; the main reported ensembles contain no missing positions.
+
+The distance gate is computed from recorded killer positions. Consequently, the likelihood is a conditional approximation to the spatial simulator when localization error is present. It does not integrate over uncertainty in the covariate itself. The targets are treated as exactly known, and no observation likelihood for target segmentation or position is included. A future mask-based analysis would require an explicit distance operator, boundary treatment and uncertainty model. Applying this benchmark directly to unknown three-dimensional contact geometry would change its scientific meaning.
+
+\subsection{Exact conditional hierarchy refresh}
+The hierarchy is $b_i=\mu_S+u_i$, with independent $u_i\sim N(0,\sigma_u^2)$ and fixed $\sigma_u=0.25$. When the cell baselines $b_i$ are held fixed, the movement likelihood is unchanged by shifting $\mu_S$ and compensating each $u_i$. The conditional posterior for $\mu_S$ is a normal distribution with mean $\bar b$ and standard deviation $\sigma_u/\sqrt{N}$, truncated to the uniform-prior support of $\mu_S$. Sampling this conditional distribution and setting $u_i=b_i-\mu_S$ gives an exact Gibbs refresh. It improves movement along the population/intercept correlation without replacing the posterior by a Gaussian approximation.
+
+The finite-difference Hessian at the optimized posterior mode only shapes Metropolis proposals. The independence proposal is a multivariate Student-$t$ distribution, and its forward/reverse density ratio is included in acceptance. Adaptation of the random-walk covariance and scale stops after warm-up. Independent random-number streams initialize and drive the four chains. Stored rank-normalized convergence and effective-sample diagnostics include all six global parameters and all 12 cell intercepts.
+
+\subsection{Retries and unresolved fits}
+The expanded state-space plan initially requests 2,000 retained draws per chain after 1,500 warm-up iterations. Subsequent attempts use 4,000 draws with 2,000 warm-up iterations, then 8,000, 16,000 or 32,000 draws with 3,000 warm-up iterations. The same prespecified criteria apply to every attempt: maximum rank-normalized $\widehat R<1.01$, minimum bulk effective sample size at least 400 and minimum tail effective sample size at least 400. Earlier attempt diagnostics and cumulative time remain in the records. Retries are triggered by numerical diagnostics, never by whether an estimated effect agrees with truth.
+
+For any unresolved fits, primary rates are conditional on accepted fits, accompanied by attempted/accepted/failed counts and worst/best outcome bounds over all attempts. When all fits pass, these bounds coincide with ordinary rates. Passing this numerical gate does not establish model validity or guarantee that every posterior approximation is free of bias. The final counts and diagnostic distributions are given in Supplementary Table~S2 and Supplementary Fig.~S7.
+
+\section{Neural context, training and usage}
+\subsection{Summary construction and density transformation}
+Each simulation contributes one row of 82 summaries derived only from observed killer tracks, observed target positions and acquisition settings. The vector describes multiscale increments, correlations, turning, radial movement, distance exposure, dwell and within-cell contrasts. It is not a sufficient statistic by proof. Summary compression may explain part of the neural persistence gap, and the present study does not compare all possible summary or sequence architectures.
+
+Each bounded parameter $\theta_j\in(L_j,U_j)$ is mapped to $z_j=\operatorname{logit}[(\theta_j-L_j)/(U_j-L_j)]$ and standardized. A conditional mixture of three full-covariance Gaussian densities estimates the joint density in transformed space. Samples map back through the logistic transformation and remain inside prior support. Evaluating density in original parameter coordinates includes the corresponding Jacobian. Full Cholesky covariance matrices permit correlated parameter uncertainty; marginal coverage checks do not establish that these correlations are accurately calibrated.
+
+Training uses a 15\% internal validation split at the movie level, AdamW optimization with learning rate 0.0015 and weight decay $10^{-4}$, batch size 128, gradient clipping at norm 5, at most 300 epochs and early-stopping patience 40. The best internal-validation checkpoint is restored. Input standardization uses training rows only. Standardized inputs are clipped to $[-12,12]$ inside the network for numerical stability, and Cholesky diagonal terms use softplus plus 0.025. These stabilizers are implementation choices, not safeguards against scientific extrapolation. All scientific evaluation movies are disjoint from the simulation banks and internal validation splits.
+
+\subsection{Noise conditioning and ablation}
+The fixed-protocol estimator expects 82 summaries. The noise-conditioned extension expects 83 context values: the same observed summaries followed by $\log\sigma_{\rm obs}$. The noise-marginalized extension uses 82 inputs but a broader training bank. The identical expanded bank supports the conditioned/marginalized comparison. The two models represent different conditional questions: the former uses a supplied known acquisition noise, whereas the latter averages over its training distribution.
+
+The new checkpoints are research artifacts accessed using the documented \texttt{observed\_context} helper in the manuscript SBI script. They are not interchangeable with the original application wrapper, which checks an 82-feature fixed protocol. Supplying 83 values to an 82-feature network is a shape error; silently omitting the scalar would ask a different inference question. The usage note in the source snapshot gives an executable example and lists the remaining fixed nuisance assumptions. No experimental-data adapter is claimed.
+
+\subsection{Validation interpretation}
+Calibration evaluates parameter draws across the stated prior, so it averages over easy and difficult regions. Separate null and alternative cases evaluate specific decision behavior. A posterior with correct marginal coverage may still be uninformative, conditionally miscalibrated or wrong in its joint dependence. Therefore, interval widths, root-mean-squared errors, rank diagnostics and decision rates are reported together. Rank-histogram bands are pointwise binomial reference intervals, not simultaneous envelopes or formal acceptance regions. Network samples are approximate posterior draws; no rank plot establishes exact inference.
+
+The training-seed sensitivity experiment reuses a common bank and common test movies. It therefore contains dependence across model results. We give each seed's coverage and decisions separately and do not assign a confidence interval to the range across three seeds. The frozen original model provides a prospective evaluation of an existing checkpoint. Primary new seeds were chosen numerically before evaluation. The publication figures identify the specific checkpoint shown so that favorable and unfavorable outcomes cannot be mixed across networks.
+
+\section{Mechanics, source transfer and predictive checks}
+The reduced mechanics are deliberately simple. Overlap repulsion is proportional to the positive difference between contact distance and centroid distance. A stochastic bond can form within contact, break at its dissociation rate, or break when distance exceeds a capture radius. Bonded killers receive a radial adhesive drift. Reduced-model targets move independently and do not receive reciprocal forces. The supplied source model retains reciprocal mechanical effects, making it a structurally distinct transfer generator.
+
+A mechanical-only trajectory can exhibit real retention or altered turning while its intrinsic stochastic coefficients remain target-independent. Calling that condition a ``null'' without qualification would be misleading. Its ground truth is zero direct modulation of the intrinsic coefficients. Poor coverage or positive coefficient declarations assess attribution within a model that omits mechanics. They do not negate the physical change in the path.
+
+The original mechanical benchmark used four internal steps per recorded frame. Supplementary Fig.~S5 compares this with finer settings and shows residual sensitivity in turning. Mechanical decision rates are therefore exploratory. Eight to sixteen internal steps provide a starting point for subsequent studies, but their apparent agreement in a finite ensemble is not a proof of convergence. Different stiffness, adhesion or density settings could require smaller timesteps.
+
+Posterior predictive checks use the fitted baseline simulator, even when the observed movie came from a mechanical stress case. They condition on the observed starting positions and target geometry but redraw cell offsets from the population. One hundred predictive movies are generated per example/method. The 82 features are correlated and were used to construct or assess inference, so the fraction outside pointwise 90\% intervals is descriptive. The low discrepancy in the mechanical example demonstrates that acceptable predictive summaries may coexist with incorrect mechanism attribution (Supplementary Fig.~S6).
+
+\section{Complete numerical tables}
+All intervals in the following tables are two-sided 95\% Wilson Monte Carlo intervals unless explicitly described otherwise. Percentages are rounded for display; machine-readable source records retain full precision. ``Accepted'' refers only to the MCMC numerical gate. Neural tables report all independently generated evaluation movies. No table pools the same movies across network seeds.
+
+Network abbreviations are F0 (frozen original model), F1--F3 (new fixed-noise seeds 117001--117003), C1--C3 (noise-conditioned seeds 127001--127003) and M1--M3 (noise-marginalized models using those same seeds). Counts labeled $S/\tau/J$ are the separate directional declarations for the three proximity effects. Their sum need not equal the any-effect count, because a movie can receive more than one declaration.
+@@NUMERICAL_TABLES@@
+
+\clearpage
+\section{Supplementary figures}
+\subsection*{Supplementary Figure S1}
+\includegraphics[width=\textwidth]{figures/figS1_rank_calibration.pdf}
+\textbf{Marginal posterior-rank diagnostics.} Rank fractions of the generating parameter within the frozen neural posterior are shown for 1,024 independent expanded prior-predictive movies. Gray bands are pointwise 95\% binomial intervals for ten equally sized rank bins; the dashed line gives the expected count. These bands are descriptive and do not provide simultaneous coverage across bins or parameters. A visually uniform histogram does not establish joint or conditional posterior calibration. Source data are provided.
+
+\clearpage
+\subsection*{Supplementary Figure S2}
+\includegraphics[width=\textwidth]{figures/figS2_training_seeds.pdf}
+\textbf{Training-seed sensitivity under the fixed observation design.} \textbf{a}, Nominal 90\% marginal coverage. \textbf{b}, Posterior-median root-mean-squared error. The frozen original network and three new training seeds use a common 16,000-movie bank and are evaluated on the same 1,024 new movies. Connected points identify a model, not repeated measurements that increase the evaluation denominator. New seeds vary initialization, splitting and optimization conditional on the shared bank. Source data are provided.
+
+\clearpage
+\subsection*{Supplementary Figure S3}
+\includegraphics[width=\textwidth]{figures/figS3_noise_training_seeds.pdf}
+\textbf{Noise-aware inference across training seeds.} \textbf{a}, Marginal 90\% coverage across 1,024 independent varying-noise movies. \textbf{b}, Any-effect declaration rates for four fixed-noise scenarios, each with 128 independent movies shared across models. Teal denotes conditioning on known noise and ochre denotes marginalizing noise. Marker shape distinguishes three training seeds. The range across seeds is descriptive and is not a confidence interval. Source data are provided.
+
+\clearpage
+\subsection*{Supplementary Figure S4}
+\includegraphics[width=\textwidth]{figures/figS4_sampler_traces.pdf}
+\textbf{Posterior sampling for the fixed first combined example.} Four chains are shown for the six global parameters of the prespecified original combined movie. Display thinning reduces file size only; diagnostics and inference use the retained draws without this display thinning. The example was fixed before inspecting recovery accuracy. Its final diagnostic gate passed after additional sampling. This plot illustrates sampling behavior for one movie; expanded ensemble diagnostics are in Supplementary Fig.~S7. Source data are provided.
+
+\clearpage
+\subsection*{Supplementary Figure S5}
+\includegraphics[width=\textwidth]{figures/figS5_timestep.pdf}
+\textbf{Weak timestep sensitivity in motion and mechanics.} Mean squared step, turning cosine and overlap fraction are shown for combined motility changes (top) and mechanical-only dynamics (bottom). Each point summarizes 128 independent movies; bars show the mean plus or minus 1.96 Monte Carlo standard errors. Five internal-step settings are evaluated independently, so the figure tests ensemble behavior rather than paired pathwise error. The 16-step setting is a numerical reference, not known exact truth. Source data include the additional exposure and net-displacement metrics.
+
+\clearpage
+\subsection*{Supplementary Figure S6}
+\includegraphics[width=\textwidth]{figures/figS6_predictive_checks.pdf}
+\textbf{Selected predictive summaries can miss omitted mechanics.} For the fixed first null, combined and mechanical-only examples, observed summary deviations from the predictive mean are divided by predictive standard deviation. One hundred geometry-conditioned predictive movies per method/example redraw cell offsets. Markers show neural and state-space fitted baseline predictions. Feature order follows the implementation, and exact feature values are supplied as source data. Features are correlated; the standardized discrepancies are not independent tests or an omnibus calibrated diagnostic.
+
+\clearpage
+\subsection*{Supplementary Figure S7}
+\includegraphics[width=\textwidth]{figures/figS7_numerical_diagnostics.pdf}
+\textbf{Expanded state-space numerical checks.} Final maximum rank-normalized $\widehat R$, minimum bulk/tail effective sample size and per-movie elapsed fitting time are shown for the four new ensembles. The thresholds are $\widehat R<1.01$ and effective sample size at least 400 for every global and cell parameter. Elapsed time includes retries and orchestration as recorded; concurrent workers share hardware. Numerical acceptance is distinct from model adequacy. Attempt histories and unresolved counts are retained in source records.
+
+\clearpage
+\subsection*{Supplementary Figure S8}
+\includegraphics[width=\textwidth]{figures/figS8_local_variance.pdf}
+\textbf{An analytical illustration of changing information content.} \textbf{a}, Locally stationary per-axis displacement-variance components far from a target and at contact under the strong combined alternative, for zero cell offset and the 0.25-min recording interval. \textbf{b}, Brownian-jitter fraction of the same local variance over different observation intervals; the dotted line marks 0.25\,min. These curves follow the stated constant-coefficient equations and are not fitted biological measurements or a proof of identifiability. Source data are provided.
+
+\clearpage
+\section{Reproduction and outstanding author decisions}
+A complete reproduction starts with the core synthetic benchmark, followed by the two manuscript expansion scripts, the publication-figure script and the manuscript builder. The source snapshot provides the exact command sequence and environment versions. Scripts preserve original and follow-up results in different directories. The final manuscript builder reads saved numerical results rather than embedding manually typed estimates, verifies shared-movie hashes and exports a numeric claim ledger.
+
+The manuscript uses a standard \texttt{article} class, default Computer Modern fonts, embedded numerical references, unnumbered Results/Methods subheadings and a separate supplement. It is a journal-style research draft, not an accepted paper or official publisher template. Author and affiliation fields are blank at the user's request. Funding, contributions, competing interests, permanent repositories, license selection and human verification remain to be supplied. No journal submission or public repository release has been performed.
+\end{document}

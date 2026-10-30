@@ -1,0 +1,20 @@
+{
+  "matched": {
+    "movies": 2176,
+    "summary_features": 83
+  },
+  "noise": {
+    "movies": 1536,
+    "summary_features": 83
+  },
+  "paired_ssm": {
+    "movies": 336,
+    "summary_features": 83
+  },
+  "all_evaluation_seeds_disjoint": true,
+  "evaluation_seeds_disjoint_from_original_and_noise_training": true,
+  "training_split_integrity_all_nine_models": true,
+  "conditioned_checkpoint_round_trip_and_log_density": true,
+  "script_syntax": true,
+  "n_new_simulated_movies": 28048
+}

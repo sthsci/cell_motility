@@ -1,0 +1,48 @@
+{
+  "kind": "matched",
+  "scenarios": {
+    "calibration": {
+      "start": 0,
+      "stop": 1024,
+      "n": 1024
+    },
+    "null": {
+      "start": 1024,
+      "stop": 1280,
+      "n": 256
+    },
+    "varied_null": {
+      "start": 1280,
+      "stop": 1536,
+      "n": 256
+    },
+    "slowdown": {
+      "start": 1536,
+      "stop": 1664,
+      "n": 128
+    },
+    "decorrelation": {
+      "start": 1664,
+      "stop": 1792,
+      "n": 128
+    },
+    "jitter": {
+      "start": 1792,
+      "stop": 1920,
+      "n": 128
+    },
+    "combined": {
+      "start": 1920,
+      "stop": 2048,
+      "n": 128
+    },
+    "weak": {
+      "start": 2048,
+      "stop": 2176,
+      "n": 128
+    }
+  },
+  "seconds": 6.253663458002848,
+  "n": 2176,
+  "independent_of_training": true
+}

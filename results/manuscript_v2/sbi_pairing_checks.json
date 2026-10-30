@@ -1,0 +1,15 @@
+{
+  "checked_at_utc": "2026-10-28T17:11:18.783162+00:00",
+  "checks": {
+    "calibration": {
+      "n_matches_checked": 96,
+      "n_planned": 96
+    },
+    "fixed_null": {
+      "n_matches_checked": 5,
+      "n_planned": 96
+    }
+  },
+  "all_available_movies_identical": true,
+  "note": "Some SSM fits may still be running. Hashes remain in both records for final verification."
+}

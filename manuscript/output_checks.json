@@ -1,0 +1,65 @@
+{
+  "nature_communications": {
+    "pages": 34,
+    "bytes": 642220,
+    "latex_warnings": [],
+    "all_fonts_embedded": true,
+    "type3_fonts": false,
+    "preview_pages": [
+      1,
+      4,
+      15,
+      26,
+      29
+    ],
+    "sha256": "4ab1e55b6da89068446e812fd909fa4a9c6a5daad08c4ecebcbe7f4248e5f84a"
+  },
+  "nature_communications_supplement": {
+    "pages": 21,
+    "bytes": 672429,
+    "latex_warnings": [],
+    "all_fonts_embedded": true,
+    "type3_fonts": false,
+    "preview_pages": [
+      1,
+      9,
+      10
+    ],
+    "sha256": "afaa59aea933c3eb75dc7530e91d441099162d1b6161ee663868f20e311042fc"
+  },
+  "core_tests": {
+    "tests": 41,
+    "failures": 0,
+    "errors": 0
+  },
+  "figure_count": 13,
+  "format": {
+    "title_words": 10,
+    "abstract_words": 139,
+    "main_text_words_excluding_methods": 3807,
+    "max_subheading_characters": 56,
+    "figure_legend_words": [
+      145,
+      120,
+      125,
+      151,
+      110
+    ],
+    "main_figures": 5,
+    "main_tables": 1,
+    "bibliography_count": 14,
+    "author_field_blank": true,
+    "remaining_numeric_tokens": false,
+    "declared_pending": [
+      "human scientific/reference verification",
+      "authorship and affiliations",
+      "funding",
+      "contributions",
+      "competing interests",
+      "public data/code archival identifiers",
+      "distribution license"
+    ],
+    "submission_ready": false,
+    "official_requirements_record": "research/journal_requirements.md"
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "study": "Follow-up synthetic validation informed by synthetic_v1; not preregistered",
+  "created_at_utc": "2026-10-28T17:04:55.113404+00:00",
+  "experimental_data": false,
+  "configuration": {
+    "n_killers": 12,
+    "n_targets": 9,
+    "n_frames": 201,
+    "frame_dt": 0.25,
+    "substeps": 1,
+    "box_size": 180.0,
+    "contact_distance": 12.0,
+    "interaction_length": 10.0,
+    "localization_sd": 0.15,
+    "heterogeneity_sd": 0.25,
+    "target_speed": 0.0,
+    "target_tau": 2.0,
+    "repulsion": 0.0,
+    "binding_rate": 0.0,
+    "unbinding_rate": 0.5,
+    "adhesion": 0.0,
+    "capture_radius_factor": 1.5,
+    "spontaneous_sd": 0.0,
+    "spontaneous_tau": 5.0
+  },
+  "prior_low": [
+    0.6931471805599453,
+    -0.2231435513142097,
+    -0.916290731874155,
+    -1.2,
+    -1.2,
+    -0.5
+  ],
+  "prior_high": [
+    1.6094379124341003,
+    1.0986122886681098,
+    0.1823215567939546,
+    0.5,
+    0.5,
+    1.2
+  ],
+  "parameters": [
+    "log_speed",
+    "log_tau",
+    "log_jitter",
+    "delta_speed",
+    "delta_tau",
+    "delta_jitter"
+  ],
+  "fixed_training_bank": "results/synthetic_v1/training_bank.npz",
+  "fixed_training_seeds": [
+    117001,
+    117002,
+    117003
+  ],
+  "frozen_v1_network": "results/synthetic_v1/neural_posterior.pt",
+  "matched_evaluation_counts": {
+    "calibration": 1024,
+    "null": 256,
+    "varied_null": 256,
+    "slowdown": 128,
+    "decorrelation": 128,
+    "jitter": 128,
+    "combined": 128,
+    "weak": 128
+  },
+  "varied_null_definition": "First three parameters independently drawn from their prior; all three proximity effects fixed to zero; other nuisance settings fixed.",
+  "noise_training": {
+    "n": 24000,
+    "localization_sd_distribution": "log-uniform(0.05,0.7) micrometres",
+    "theta_noise_independent": true,
+    "training_seeds": [
+      127001,
+      127002,
+      127003
+    ],
+    "known_noise_context": "log(localization_sd) appended to 82 observed-only summaries",
+    "ablation": "Three matched training-seed models use the identical bank but omit the known-noise context (marginalized noise)."
+  },
+  "noise_evaluation_counts": {
+    "calibration_noise": 1024,
+    "null_sd015": 128,
+    "null_sd060": 128,
+    "combined_sd015": 128,
+    "combined_sd060": 128
+  },
+  "posterior_draws": 1500,
+  "decision": "OR of three marginal probabilities >0.95: delta_speed<-log(1.2), delta_tau<-log(1.2), delta_jitter>log(1.2)",
+  "intervals": "Marginal equal-tail 90% intervals, Wilson 95% intervals across independent movies",
+  "training_hyperparameters": {
+    "max_epochs": 300,
+    "hidden": 128,
+    "components": 3,
+    "patience": 40,
+    "batch_size": 128,
+    "learning_rate": 0.0015,
+    "validation_fraction": 0.15
+  },
+  "seed_partitions": {
+    "matched_simulation_start": 1500000000,
+    "noise_evaluation_start": 1500100000,
+    "matched_parameter_start": 1600000000,
+    "noise_parameter_start": 1600100000,
+    "noise_training_parameters": 1700000000,
+    "noise_training_levels": 1700000001,
+    "noise_training_simulation_start": 1800000000
+  },
+  "analysis_limits": [
+    "Training-seed variability is conditional on the fixed simulation bank, not independent-bank uncertainty.",
+    "All compared networks share test movies; never pool networks as independent datasets.",
+    "Noise conditioning supplies known nuisance information and broader training support; it does not estimate unknown localization error.",
+    "All results concern the specified simplified 2D proximity model; no claim of cellular mechanism is made."
+  ],
+  "primary_models": {
+    "fixed": "fixed_117001",
+    "conditioned": "conditioned_127001",
+    "marginalized": "marginalized_127001",
+    "legacy": "frozen_v1"
+  },
+  "primary_selection_note": "First numeric training seed designated primary before training/evaluation. Remaining seeds quantify sensitivity; no best-network selection.",
+  "amendments": [
+    {
+      "at_utc": "2026-10-28T17:06:05.163081+00:00",
+      "before_evaluation": true,
+      "change": "Evaluate the four fixed-noise models additionally on the same movies as the independent SSM follow-up. This enables paired comparison without pooling network replications.",
+      "design": {
+        "calibration": {
+          "n": 96,
+          "parameter_seed": 710001,
+          "simulation_start": 711000
+        },
+        "fixed_null": {
+          "n": 96,
+          "scenario": "null",
+          "simulation_start": 721000
+        },
+        "combined": {
+          "n": 96,
+          "scenario": "combined",
+          "simulation_start": 731000
+        },
+        "varied_baseline_null": {
+          "n": 48,
+          "parameter_seed": 740001,
+          "effects_zero": true,
+          "simulation_start": 741000
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "timestamp_utc": "2026-10-28T17:11:18.605671+00:00",
+  "python": "3.12.7",
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.14.1",
+    "torch": "2.6.0.dev20241210",
+    "numba": "0.60.0",
+    "pandas": "2.2.3"
+  },
+  "source_sha256": {
+    "src/motility_inference/evaluation.py": "dcbc15800aa660e5e87729592273a2af7314f1f57007a810c126dda6175a1640",
+    "src/motility_inference/framework.py": "bd5c05e035433cc0e196ce65e22edc7eb79fd021535216df2ea986870e337173",
+    "src/motility_inference/__init__.py": "9a81a5bc88a7d1016cddf67353e5cb39344af25321566b49185b6e8442ba9719",
+    "src/motility_inference/reference.py": "bfb18480dff23562087aa35915ccc52fee5905330ab8a4b0850685899536c865",
+    "src/motility_inference/simulator.py": "4169557ff1257d7487940314e35100a1108e2bca3d47d5aa72b3644e9cd5adc5",
+    "src/motility_inference/priors.py": "ab55322fe4ee4fdcc5f6893ffd34a0a82080c71aa9fbc33acef7ca47bf929e16",
+    "src/motility_inference/state_space.py": "8fcbe81bed4c7fa29e9a85acbbe6d608459762fc11bb9ce4cbc526417a091a68",
+    "src/motility_inference/sbi.py": "8fb74e26b50d4ca30f1241eaab061a75efb554c8dbaad547ea0ba127deb35ae0",
+    "src/motility_inference/summaries.py": "c7f9c5ccc9e91db4650f8006e2387b3cc5275c0504fb7d77e23dfa4e7b17c27d",
+    "scripts/run_manuscript_sbi.py": "e3f7ffda1d96d5f054107f3b566185f52b10b80c8150e6aa7a162a83bb317744"
+  },
+  "v1_bank_sha256": "7df67b4251b9f1f911c0444cbe1ebf6dcb322fda4d22a7c4b4c96a1a72e60900",
+  "v1_model_sha256": "19758726f9b02b1a259b9e570b6e4435b374e5b626061b0dcda2799f7facb6a9"
+}

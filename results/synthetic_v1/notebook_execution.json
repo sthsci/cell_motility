@@ -1,0 +1,30 @@
+[
+  {
+    "notebook": "01_simulator_and_question.ipynb",
+    "seconds": 3.3508016250016226,
+    "code_cells": 6,
+    "executed_code_cells": 6,
+    "errors": 0
+  },
+  {
+    "notebook": "02_hierarchical_state_space.ipynb",
+    "seconds": 3.102481166999496,
+    "code_cells": 4,
+    "executed_code_cells": 4,
+    "errors": 0
+  },
+  {
+    "notebook": "03_simulation_based_inference.ipynb",
+    "seconds": 4.401226250000036,
+    "code_cells": 6,
+    "executed_code_cells": 6,
+    "errors": 0
+  },
+  {
+    "notebook": "04_validation_and_results.ipynb",
+    "seconds": 2.5339327920009964,
+    "code_cells": 8,
+    "executed_code_cells": 8,
+    "errors": 0
+  }
+]

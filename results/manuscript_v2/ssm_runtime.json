@@ -1,0 +1,40 @@
+{
+  "completed_at_utc": "2026-10-28T17:21:23.646548+00:00",
+  "workers": 3,
+  "wall_seconds_this_invocation": 1030.0515095409974,
+  "newly_processed_this_invocation": 336,
+  "counts": {
+    "calibration": {
+      "n_planned": 96,
+      "n_attempted": 96,
+      "n_passed": 96,
+      "n_failed": 0,
+      "complete": true,
+      "total_sampler_seconds": 1228.6210421189899
+    },
+    "fixed_null": {
+      "n_planned": 96,
+      "n_attempted": 96,
+      "n_passed": 96,
+      "n_failed": 0,
+      "complete": true,
+      "total_sampler_seconds": 635.8237653790129
+    },
+    "combined": {
+      "n_planned": 96,
+      "n_attempted": 96,
+      "n_passed": 96,
+      "n_failed": 0,
+      "complete": true,
+      "total_sampler_seconds": 777.6294944099936
+    },
+    "varied_baseline_null": {
+      "n_planned": 48,
+      "n_attempted": 48,
+      "n_passed": 48,
+      "n_failed": 0,
+      "complete": true,
+      "total_sampler_seconds": 428.7023587520125
+    }
+  }
+}

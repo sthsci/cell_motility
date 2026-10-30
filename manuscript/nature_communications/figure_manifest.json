@@ -1,0 +1,93 @@
+[
+  {
+    "figure": "fig1_model",
+    "supplementary": false,
+    "source_data": "source_data/fig1_model.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 130.81
+  },
+  {
+    "figure": "fig5_attribution",
+    "supplementary": false,
+    "source_data": "source_data/fig5_attribution.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 71.11999999999999
+  },
+  {
+    "figure": "figS5_timestep",
+    "supplementary": true,
+    "source_data": "source_data/figS5_timestep.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 114.3
+  },
+  {
+    "figure": "figS8_local_variance",
+    "supplementary": true,
+    "source_data": "source_data/figS8_local_variance.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 71.11999999999999
+  },
+  {
+    "figure": "fig2_calibration",
+    "supplementary": false,
+    "source_data": "source_data/fig2_calibration.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 129.54
+  },
+  {
+    "figure": "fig3_identifiability",
+    "supplementary": false,
+    "source_data": "source_data/fig3_identifiability.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 67.30999999999999
+  },
+  {
+    "figure": "fig4_observation_noise",
+    "supplementary": false,
+    "source_data": "source_data/fig4_observation_noise.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 124.46000000000001
+  },
+  {
+    "figure": "figS1_rank_calibration",
+    "supplementary": true,
+    "source_data": "source_data/figS1_rank_calibration.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 114.3
+  },
+  {
+    "figure": "figS2_training_seeds",
+    "supplementary": true,
+    "source_data": "source_data/figS2_training_seeds.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 71.11999999999999
+  },
+  {
+    "figure": "figS3_noise_training_seeds",
+    "supplementary": true,
+    "source_data": "source_data/figS3_noise_training_seeds.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 71.11999999999999
+  },
+  {
+    "figure": "figS4_sampler_traces",
+    "supplementary": true,
+    "source_data": "source_data/figS4_sampler_traces.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 109.21999999999998
+  },
+  {
+    "figure": "figS6_predictive_checks",
+    "supplementary": true,
+    "source_data": "source_data/figS6_predictive_checks.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 121.91999999999999
+  },
+  {
+    "figure": "figS7_numerical_diagnostics",
+    "supplementary": true,
+    "source_data": "source_data/figS7_numerical_diagnostics.csv",
+    "width_mm": 180.00979999999998,
+    "height_mm": 68.58
+  }
+]

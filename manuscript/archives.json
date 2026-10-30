@@ -1,0 +1,20 @@
+[
+  {
+    "file": "journal_source.zip",
+    "files": 69,
+    "bytes": 6998518,
+    "sha256": "66df728b7ee792c0801a03cd977d18f1e0139f9f6c4b2cafaff44109d7599f5a"
+  },
+  {
+    "file": "source_data.zip",
+    "files": 15,
+    "bytes": 302419,
+    "sha256": "8b07679afd746f505ebb7c62102795fc933e34d68b77c898f9037b3af6c781cd"
+  },
+  {
+    "file": "reproducibility_bundle.zip",
+    "files": 251,
+    "bytes": 80704046,
+    "sha256": "f8bc9c4421264d397506af098f994c0a28c06375bb9d9bb73dfb5b138c1b2440"
+  }
+]

@@ -1,0 +1,563 @@
+{
+  "checked_at_utc": "2026-10-28T17:23:09.526766+00:00",
+  "all_pairs_identical": true,
+  "independent_movies": 336,
+  "neural_models": 4,
+  "movie_model_comparisons": 1344,
+  "checks": {
+    "calibration": {
+      "frozen_v1": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      },
+      "fixed_117001": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      },
+      "fixed_117002": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      },
+      "fixed_117003": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      }
+    },
+    "fixed_null": {
+      "frozen_v1": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      },
+      "fixed_117001": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      },
+      "fixed_117002": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      },
+      "fixed_117003": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      }
+    },
+    "combined": {
+      "frozen_v1": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      },
+      "fixed_117001": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      },
+      "fixed_117002": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      },
+      "fixed_117003": {
+        "movies_checked": 96,
+        "matching_seeds": 96,
+        "matching_positions_sha256": 96,
+        "matching_truth": 96
+      }
+    },
+    "varied_baseline_null": {
+      "frozen_v1": {
+        "movies_checked": 48,
+        "matching_seeds": 48,
+        "matching_positions_sha256": 48,
+        "matching_truth": 48
+      },
+      "fixed_117001": {
+        "movies_checked": 48,
+        "matching_seeds": 48,
+        "matching_positions_sha256": 48,
+        "matching_truth": 48
+      },
+      "fixed_117002": {
+        "movies_checked": 48,
+        "matching_seeds": 48,
+        "matching_positions_sha256": 48,
+        "matching_truth": 48
+      },
+      "fixed_117003": {
+        "movies_checked": 48,
+        "matching_seeds": 48,
+        "matching_positions_sha256": 48,
+        "matching_truth": 48
+      }
+    }
+  },
+  "paired_flag_contingencies": {
+    "calibration": {
+      "frozen_v1": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          35,
+          23,
+          45
+        ],
+        "ssm_only_flag": [
+          8,
+          14,
+          7
+        ],
+        "neural_only_flag": [
+          1,
+          0,
+          0
+        ],
+        "neither_flag": [
+          52,
+          59,
+          44
+        ]
+      },
+      "fixed_117001": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          32,
+          20,
+          46
+        ],
+        "ssm_only_flag": [
+          11,
+          17,
+          6
+        ],
+        "neural_only_flag": [
+          0,
+          1,
+          0
+        ],
+        "neither_flag": [
+          53,
+          58,
+          44
+        ]
+      },
+      "fixed_117002": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          32,
+          21,
+          44
+        ],
+        "ssm_only_flag": [
+          11,
+          16,
+          8
+        ],
+        "neural_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neither_flag": [
+          53,
+          59,
+          44
+        ]
+      },
+      "fixed_117003": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          35,
+          22,
+          47
+        ],
+        "ssm_only_flag": [
+          8,
+          15,
+          5
+        ],
+        "neural_only_flag": [
+          1,
+          0,
+          0
+        ],
+        "neither_flag": [
+          52,
+          59,
+          44
+        ]
+      }
+    },
+    "fixed_null": {
+      "frozen_v1": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          0,
+          0,
+          0
+        ],
+        "ssm_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neither_flag": [
+          96,
+          96,
+          96
+        ]
+      },
+      "fixed_117001": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          0,
+          0,
+          0
+        ],
+        "ssm_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neither_flag": [
+          96,
+          96,
+          96
+        ]
+      },
+      "fixed_117002": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          0,
+          0,
+          0
+        ],
+        "ssm_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neither_flag": [
+          96,
+          96,
+          96
+        ]
+      },
+      "fixed_117003": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          0,
+          0,
+          0
+        ],
+        "ssm_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neither_flag": [
+          96,
+          96,
+          96
+        ]
+      }
+    },
+    "combined": {
+      "frozen_v1": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          91,
+          6,
+          96
+        ],
+        "ssm_only_flag": [
+          5,
+          51,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          1,
+          0
+        ],
+        "neither_flag": [
+          0,
+          38,
+          0
+        ]
+      },
+      "fixed_117001": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          88,
+          16,
+          96
+        ],
+        "ssm_only_flag": [
+          8,
+          41,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          3,
+          0
+        ],
+        "neither_flag": [
+          0,
+          36,
+          0
+        ]
+      },
+      "fixed_117002": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          90,
+          12,
+          96
+        ],
+        "ssm_only_flag": [
+          6,
+          45,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          1,
+          0
+        ],
+        "neither_flag": [
+          0,
+          38,
+          0
+        ]
+      },
+      "fixed_117003": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          91,
+          10,
+          96
+        ],
+        "ssm_only_flag": [
+          5,
+          47,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          1,
+          0
+        ],
+        "neither_flag": [
+          0,
+          38,
+          0
+        ]
+      }
+    },
+    "varied_baseline_null": {
+      "frozen_v1": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          0,
+          1,
+          0
+        ],
+        "ssm_only_flag": [
+          0,
+          2,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neither_flag": [
+          48,
+          45,
+          48
+        ]
+      },
+      "fixed_117001": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          0,
+          1,
+          0
+        ],
+        "ssm_only_flag": [
+          0,
+          2,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neither_flag": [
+          48,
+          45,
+          48
+        ]
+      },
+      "fixed_117002": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          0,
+          1,
+          0
+        ],
+        "ssm_only_flag": [
+          0,
+          2,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neither_flag": [
+          48,
+          45,
+          48
+        ]
+      },
+      "fixed_117003": {
+        "effect_order": [
+          "decreased_active_amplitude",
+          "decreased_persistence",
+          "increased_jitter"
+        ],
+        "both_flag": [
+          0,
+          1,
+          0
+        ],
+        "ssm_only_flag": [
+          0,
+          2,
+          0
+        ],
+        "neural_only_flag": [
+          0,
+          0,
+          0
+        ],
+        "neither_flag": [
+          48,
+          45,
+          48
+        ]
+      }
+    }
+  },
+  "note": "The 1,344 movie-model comparisons reuse 336 independent simulated movies; they are not 1,344 independent replicates. No scientific outcome was used to select paired observations.",
+  "source_sha256": {
+    "sbi_paired_ssm_evaluation.json": "5542057025948fe86d600aa58690f194d8f1168e5376b4a51effabacdde12aee",
+    "ssm_calibration.json": "008a3b89ba5de5ec50b22903fec17d46e2a6962653238ca5b49ac33a1ea4665f",
+    "ssm_fixed_null.json": "ad8e021a226214df8ef3ae0e7bac0270fe9cda721defe69d270768a9bc2eb72a",
+    "ssm_combined.json": "c6de52c8ef1a7ae3c60cac8e32f2395249f6c32111ed41b79678750cc1a073ee",
+    "ssm_varied_baseline_null.json": "ccfceee77104854b16f5e9828fe6d9eae6ff8f7046bb6a654c16c20abb827d6f"
+  }
+}

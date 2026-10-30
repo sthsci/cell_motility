@@ -1,0 +1,27 @@
+{
+  "n": 24000,
+  "features": 83,
+  "seconds": 72.08255333399939,
+  "distribution": "independent prior theta and loguniform localization_sd(0.05,0.7)",
+  "config_except_noise": {
+    "n_killers": 12,
+    "n_targets": 9,
+    "n_frames": 201,
+    "frame_dt": 0.25,
+    "substeps": 1,
+    "box_size": 180.0,
+    "contact_distance": 12.0,
+    "interaction_length": 10.0,
+    "localization_sd": 0.15,
+    "heterogeneity_sd": 0.25,
+    "target_speed": 0.0,
+    "target_tau": 2.0,
+    "repulsion": 0.0,
+    "binding_rate": 0.0,
+    "unbinding_rate": 0.5,
+    "adhesion": 0.0,
+    "capture_radius_factor": 1.5,
+    "spontaneous_sd": 0.0,
+    "spontaneous_tau": 5.0
+  }
+}

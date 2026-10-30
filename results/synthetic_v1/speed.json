@@ -1,0 +1,19 @@
+{
+  "first_call_seconds_in_this_process": 0.12848433300314355,
+  "first_call_note": "May use an existing Numba disk cache; not a guaranteed clean compilation timing.",
+  "timings": {
+    "numpy": {
+      "median_seconds": 0.06184341599873733,
+      "repeats": 5
+    },
+    "numba": {
+      "median_seconds": 0.0003268959990236908,
+      "repeats": 100
+    }
+  },
+  "paired_engine_max_absolute_difference": 0.0,
+  "same_model_speedup": 189.18376542826823,
+  "supplied_abm_seconds": 0.05914437499814085,
+  "supplied_abm_rows": 4221,
+  "supplied_abm_comparison_note": "Similar free-motion design, but different initialization/integrator/output; not a numerical-equivalence speedup."
+}

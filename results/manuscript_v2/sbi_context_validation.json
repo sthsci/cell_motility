@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "observations-only context equals full synthetic context",
+    "mutating theta, cell offsets and latent positions leaves context unchanged",
+    "83 features when known log noise appended"
+  ],
+  "passed": true,
+  "noise_source": "known synthetic acquisition metadata, not inferred truth parameter"
+}

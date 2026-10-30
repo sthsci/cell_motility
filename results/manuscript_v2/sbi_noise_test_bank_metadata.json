@@ -1,0 +1,33 @@
+{
+  "kind": "noise",
+  "scenarios": {
+    "calibration_noise": {
+      "start": 0,
+      "stop": 1024,
+      "n": 1024
+    },
+    "null_sd015": {
+      "start": 1024,
+      "stop": 1152,
+      "n": 128
+    },
+    "null_sd060": {
+      "start": 1152,
+      "stop": 1280,
+      "n": 128
+    },
+    "combined_sd015": {
+      "start": 1280,
+      "stop": 1408,
+      "n": 128
+    },
+    "combined_sd060": {
+      "start": 1408,
+      "stop": 1536,
+      "n": 128
+    }
+  },
+  "seconds": 5.041867833999277,
+  "n": 1536,
+  "independent_of_training": true
+}

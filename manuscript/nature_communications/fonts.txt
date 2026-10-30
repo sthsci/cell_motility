@@ -1,0 +1,37 @@
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+JXPWDV+SFRM2074                      Type 1            Custom           yes yes yes      8  0
+WPTISN+SFRM1095                      Type 1            Custom           yes yes yes      9  0
+DWTRYG+SFBX1095                      Type 1            Custom           yes yes yes     10  0
+SPQOZK+SFRM1200                      Type 1            Custom           yes yes yes     11  0
+CTEJRV+SFSS0800                      Type 1            Custom           yes yes yes     25  0
+ODRUNV+SFRM0800                      Type 1            Custom           yes yes yes     26  0
+GLKFGT+SFBX1728                      Type 1            Custom           yes yes yes     44  0
+UGFBCJ+SFBX1440                      Type 1            Custom           yes yes yes     46  0
+ASVXVJ+CMMI12                        Type 1            Builtin          yes yes yes     47  0
+JTUGJH+CMR12                         Type 1            Builtin          yes yes yes     73  0
+TDGDJL+CMR8                          Type 1            Builtin          yes yes yes     74  0
+HWJEZT+CMSY10                        Type 1            Builtin          yes yes yes     75  0
+TMCDBM+CMSY8                         Type 1            Builtin          yes yes yes     76  0
+BZLGUK+CMMI8                         Type 1            Builtin          yes yes yes     77  0
+VXITWN+CMEX10                        Type 1            Builtin          yes yes yes    127  0
+JYTQHO+SFTT1200                      Type 1            Custom           yes yes yes    158  0
+QGPRIU+SFTI1200                      Type 1            Custom           yes yes yes    187  0
+MVLEWY+SFBX1200                      Type 1            Custom           yes yes yes    188  0
+GZJLBM+CMR10                         Type 1            Builtin          yes yes yes    220  0
+GOFYPY+Arial-BoldMT                  CID TrueType      Identity-H       yes yes yes    228  0
+GOFYPY+ArialMT                       CID TrueType      Identity-H       yes yes yes    229  0
+GCWXDV+DejaVuSans-Oblique            CID TrueType      Identity-H       yes yes yes    230  0
+BMQQDV+DejaVuSans                    CID TrueType      Identity-H       yes yes yes    231  0
+GOFYPY+Arial-BoldMT                  CID TrueType      Identity-H       yes yes yes    265  0
+GOFYPY+ArialMT                       CID TrueType      Identity-H       yes yes yes    266  0
+GCWXDV+DejaVuSans-Oblique            CID TrueType      Identity-H       yes yes yes    267  0
+GOFYPY+Arial-BoldMT                  CID TrueType      Identity-H       yes yes yes    299  0
+GOFYPY+ArialMT                       CID TrueType      Identity-H       yes yes yes    300  0
+GCWXDV+DejaVuSans-Oblique            CID TrueType      Identity-H       yes yes yes    301  0
+GOFYPY+Arial-BoldMT                  CID TrueType      Identity-H       yes yes yes    328  0
+GOFYPY+ArialMT                       CID TrueType      Identity-H       yes yes yes    329  0
+GCWXDV+DejaVuSans-Oblique            CID TrueType      Identity-H       yes yes yes    330  0
+GOFYPY+Arial-BoldMT                  CID TrueType      Identity-H       yes yes yes    355  0
+GOFYPY+ArialMT                       CID TrueType      Identity-H       yes yes yes    356  0
+GCWXDV+DejaVuSans-Oblique            CID TrueType      Identity-H       yes yes yes    357  0

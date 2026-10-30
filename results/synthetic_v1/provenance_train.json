@@ -1,0 +1,92 @@
+{
+  "study": "synthetic target-associated migration benchmark",
+  "experimental_data": false,
+  "config": {
+    "n_killers": 12,
+    "n_targets": 9,
+    "n_frames": 201,
+    "frame_dt": 0.25,
+    "substeps": 1,
+    "box_size": 180.0,
+    "contact_distance": 12.0,
+    "interaction_length": 10.0,
+    "localization_sd": 0.15,
+    "heterogeneity_sd": 0.25,
+    "target_speed": 0.0,
+    "target_tau": 2.0,
+    "repulsion": 0.0,
+    "binding_rate": 0.0,
+    "unbinding_rate": 0.5,
+    "adhesion": 0.0,
+    "capture_radius_factor": 1.5,
+    "spontaneous_sd": 0.0,
+    "spontaneous_tau": 5.0
+  },
+  "arguments": {
+    "output": "/Users/marsian/PhD_LifeSciRes/cell_motility/results/synthetic_v1",
+    "stage": "train",
+    "n_train": 16000,
+    "n_test": 256,
+    "replicates": 32,
+    "epochs": 300,
+    "posterior_draws": 1500,
+    "draws": 2000,
+    "warmup": 1500,
+    "ssm_test": 24
+  },
+  "prior_low": [
+    0.6931471805599453,
+    -0.2231435513142097,
+    -0.916290731874155,
+    -1.2,
+    -1.2,
+    -0.5
+  ],
+  "prior_high": [
+    1.6094379124341003,
+    1.0986122886681098,
+    0.1823215567939546,
+    0.5,
+    0.5,
+    1.2
+  ],
+  "parameter_names": [
+    "log_speed",
+    "log_tau",
+    "log_jitter",
+    "delta_speed",
+    "delta_tau",
+    "delta_jitter"
+  ],
+  "effect_rope": 0.1823215567939546,
+  "decision": "posterior P(prespecified directional effect beyond log(1.2)) > 0.95",
+  "seed_partitions": {
+    "training": 12001,
+    "prior_test": 22001,
+    "scenarios": 32001,
+    "ssm_calibration": 42001,
+    "ppc": 52001
+  },
+  "python": "3.12.7",
+  "platform": "Darwin",
+  "versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.14.1",
+    "numba": "0.60.0",
+    "torch": "2.6.0.dev20241210",
+    "arviz": "0.22.0",
+    "pandas": "2.2.3",
+    "matplotlib": "3.9.3",
+    "nbformat": "5.10.4",
+    "nbclient": "0.10.1"
+  },
+  "source_sha256": {
+    "src/motility_inference/__init__.py": "9a81a5bc88a7d1016cddf67353e5cb39344af25321566b49185b6e8442ba9719",
+    "src/motility_inference/evaluation.py": "dcbc15800aa660e5e87729592273a2af7314f1f57007a810c126dda6175a1640",
+    "src/motility_inference/priors.py": "ab55322fe4ee4fdcc5f6893ffd34a0a82080c71aa9fbc33acef7ca47bf929e16",
+    "src/motility_inference/sbi.py": "8fb74e26b50d4ca30f1241eaab061a75efb554c8dbaad547ea0ba127deb35ae0",
+    "src/motility_inference/simulator.py": "2899dc2fa28d3fd8bec03647b45f55f58a017e35918fd630334c1cfc942b3fba",
+    "src/motility_inference/state_space.py": "f57daa289ec6c93db25b11ac2a19acb4dc840eaaaca4b6d1abb23d6c4132d29e",
+    "src/motility_inference/summaries.py": "c7f9c5ccc9e91db4650f8006e2387b3cc5275c0504fb7d77e23dfa4e7b17c27d"
+  }
+}

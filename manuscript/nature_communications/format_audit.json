@@ -1,0 +1,29 @@
+{
+  "title_words": 10,
+  "abstract_words": 139,
+  "main_text_words_excluding_methods": 3807,
+  "max_subheading_characters": 56,
+  "figure_legend_words": [
+    145,
+    120,
+    125,
+    151,
+    110
+  ],
+  "main_figures": 5,
+  "main_tables": 1,
+  "bibliography_count": 14,
+  "author_field_blank": true,
+  "remaining_numeric_tokens": false,
+  "declared_pending": [
+    "human scientific/reference verification",
+    "authorship and affiliations",
+    "funding",
+    "contributions",
+    "competing interests",
+    "public data/code archival identifiers",
+    "distribution license"
+  ],
+  "submission_ready": false,
+  "official_requirements_record": "research/journal_requirements.md"
+}
